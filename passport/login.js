@@ -2,6 +2,10 @@ var LocalStrategy   = require('passport-local').Strategy;
 var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 
+var fbConfig = require('../config/fb');
+var passport = require('passport');
+var FaceboookStrategy = require('passport-facebook').Strategy;
+
 module.exports = function(passport){
 
 	passport.use('login', new LocalStrategy({
