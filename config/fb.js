@@ -2,5 +2,5 @@
 module.exports = {
   'appID' : '644958238994099',
   'appSecret' : '7119012118bc1d93b115c2133b6273f0',
-  'callbackUrl' : 'http://localhost:3000/auth/facebook/callback'
+  'callbackUrl' : 'http://localhost:3000/users/auth/facebook/callback'
 }
