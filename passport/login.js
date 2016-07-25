@@ -7,19 +7,18 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = function(passport){
-
 		passport.use('facebook', new FacebookStrategy({
 	  clientID        : fbConfig.appID,
 	  clientSecret    : fbConfig.appSecret,
 	  callbackURL     : fbConfig.callbackUrl,
-		profileFields: ['id', 'displayName', 'photos', 'email']
+		profileFields: ['id', 'displayName', 'photos', 'emails']
 	},
 	  // facebook will send back the tokens and profile
 	  function(access_token, refresh_token, profile, done) {
 	    // asynchronous
 	    process.nextTick(function() {
 	      // find the user in the database based on their facebook id
-	      User.findOne({ 'uid' : profile.id }, function(err, user) {
+	      User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
 	        // if there is an error, stop everything and return that
 	        // ie an error connecting to the database
 	        if (err)
@@ -30,14 +29,13 @@ module.exports = function(passport){
 	          } else {
 	            // if there is no user found with that facebook id, create them
 	            var newUser = new User();
-							console.log('Profile' + profile.displayName);
+							console.log('Profile' + profile.id);
 	            // set all of the facebook information in our user model
-	            newUser.uid = profile.id; // set the users facebook id
-	            newUser.facebook_token = access_token; // we will save the token that facebook provides to the user
-	            newUser.firstName  = profile.name.givenName;
-	            newUser.lastName = profile.name.familyName; // look at the passport user profile to see how names are returned
-	            newUser.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
-							newUser.provider = "facebook";
+	            newUser.facebook.id = profile.id; // set the users facebook id
+	            newUser.facebook.token = access_token; // we will save the token that facebook provides to the user
+	            newUser.facebook.name  = profile.displayName;
+							console.log("==========================" + profile.emails[0].value);
+	            newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 	            // save our user to the database
 	            newUser.save(function(err) {
 	              if (err)
