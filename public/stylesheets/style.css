@@ -4,8 +4,13 @@ body {
   padding-bottom: 20px;
 }
 
+.container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 body > div {
-  min-height: 750px;
+  min-height: 650px;
   position: relative;
 }
 
@@ -34,6 +39,9 @@ body > div {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
 }
 
 /* Customize container */
@@ -84,9 +92,4 @@ body > div {
   .page-header{
     margin-top: 0;
   }
-}
-footer{
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
 }

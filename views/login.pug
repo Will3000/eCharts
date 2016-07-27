@@ -11,7 +11,10 @@ block content
       input.form-control(type='password', name="password", required)
     button.btn.btn-default(type='submit') Login
   a(href='/users/signup', class='text-center new-account') Create an account
-  a(href='/users/auth/facebook') Login with Facebook
+  br
+  a(href='/users/auth/facebook' class="btn btn-primary")
+    i(class="fa fa-facebook aria-hidden='false'", style="margin-right:10px;")
+    span Facebook
   #message
   if message
     h1.text-center.error-message #{message}

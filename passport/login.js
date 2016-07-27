@@ -8,11 +8,11 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = function(passport){
 		passport.use('facebook', new FacebookStrategy({
-	  clientID        : fbConfig.appID,
-	  clientSecret    : fbConfig.appSecret,
-	  callbackURL     : fbConfig.callbackUrl,
-		profileFields: ['id', 'displayName', 'photos', 'emails']
-	},
+		  clientID        : fbConfig.appID,
+		  clientSecret    : fbConfig.appSecret,
+		  callbackURL     : fbConfig.callbackUrl,
+			profileFields: ['id', 'displayName', 'photos', 'emails']
+		},
 	  // facebook will send back the tokens and profile
 	  function(access_token, refresh_token, profile, done) {
 	    // asynchronous
@@ -29,13 +29,11 @@ module.exports = function(passport){
 	          } else {
 	            // if there is no user found with that facebook id, create them
 	            var newUser = new User();
-							console.log('Profile' + profile.id);
 	            // set all of the facebook information in our user model
-	            newUser.facebook.id = profile.id; // set the users facebook id
-	            newUser.facebook.token = access_token; // we will save the token that facebook provides to the user
+	            newUser.facebook.id = profile.id; 
+	            newUser.facebook.token = access_token;
 	            newUser.facebook.name  = profile.displayName;
-							console.log("==========================" + profile.emails[0].value);
-	            newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+	            newUser.facebook.email = profile.emails[0].value;
 	            // save our user to the database
 	            newUser.save(function(err) {
 	              if (err)
@@ -49,23 +47,21 @@ module.exports = function(passport){
 	}));
 
 
-
-
-
 	passport.use('login', new LocalStrategy({
             usernameField: 'email',
+						passwordField: 'password',
             passReqToCallback : true
         },
-        function(req, username, password, done) {
+        function(req, email, password, done) {
             // check in mongo if a user with username exists or not
-            User.findOne({ 'email' :  username },
+            User.findOne({ 'local.email' :  email },
                 function(err, user) {
                     // In case of any error, return using the done method
                     if (err)
                         return done(err);
                     // Username does not exist, log the error and redirect back
                     if (!user){
-                        console.log('User Not Found with email '+ username);
+                        console.log('User Not Found with email '+ email);
                         return done(null, false, req.flash('message', 'User Not found.'));
                     }
                     // User exists but wrong password, log the error
@@ -84,7 +80,7 @@ module.exports = function(passport){
 
 
     var isValidPassword = function(user, password){
-        return bCrypt.compareSync(password, user.password);
+        return bCrypt.compareSync(password, user.local.password);
     }
 
 }

@@ -2,11 +2,11 @@ extends layout
 
 block content
 	#user
-		h1.text-center.login-title Welcome #{user.firstName}. Check your details below:
+		h1.text-center.login-title Welcome #{user.local.firstName}. Check your details below:
 			div.signup-wall
 				ul.user-details
-					li Username: #{user.username}
-					li Email: #{user.email}
-					li First Name: #{user.firstName}
-					li Last Name #{user.lastName}
+					li Username: #{user.local.username}
+					li Email: #{user.local.email}
+					li First Name: #{user.local.firstName}
+					li Last Name: #{user.local.lastName}
 			a(href='/users/signout', class='text-center new-account') Sign Out

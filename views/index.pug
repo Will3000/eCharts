@@ -1,4 +1,6 @@
 extends layout
 
 block content
-  p Welcome to #{title}
+  if login
+    p Hi, #{name}
+    a(class="btn btn-default",href="/tables/new") Create A Chart

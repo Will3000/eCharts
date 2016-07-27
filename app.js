@@ -50,14 +50,26 @@ initPassport(passport);
 // }
 
 app.use(function (req, res, next) {
-  res.locals.login = req.isAuthenticated();
+  var greeting = function(){
+    console.log("hello");
+    return "hello";
+  }
+  // res.locals.login = req.isAuthenticated();
+  if(req.user){
+    res.locals.login = true;
+  } else {
+    res.locals.login = false;
+  }
   next();
 });
 
+
 var routes = require('./routes/index');
 var users = require('./routes/users')(passport);
+var tables = require('./routes/tables');
 app.use('/', routes);
 app.use('/users', users);
+app.use('/tables', tables);
 
 
 /// catch 404 and forward to error handler

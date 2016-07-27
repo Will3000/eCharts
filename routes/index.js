@@ -3,7 +3,16 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'eCharts' });
+  if(req.user){
+    var name = req.user.local.firstName ;
+    if(!name){
+      name = req.user.facebook.name;
+    }
+  } else {
+    var name = "";
+  }
+  
+  res.render('index', { title: 'eCharts', name: name});
 });
 
 module.exports = router;
