@@ -54,12 +54,12 @@ app.use(function (req, res, next) {
     console.log("hello");
     return "hello";
   }
-  // res.locals.login = req.isAuthenticated();
-  if(req.user){
-    res.locals.login = true;
-  } else {
-    res.locals.login = false;
-  }
+  res.locals.login = req.isAuthenticated();
+  // if(req.user){
+  //   app.locals.login = true;
+  // } else {
+  //   app.locals.login = false;
+  // }
   next();
 });
 

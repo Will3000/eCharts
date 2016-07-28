@@ -6,3 +6,8 @@ block content
   div(id="example2",class="hot handsontable htColumnHeaders")
   br
   button#save.btn.btn-default Save
+  br
+  ul(id="tables")
+  each val in tables
+    li
+      a(href="http://localhost:3000/tables/"+val)= val

@@ -9,7 +9,7 @@ body {
   padding-right: 0px;
 }
 
-body > div {
+body > div.main-container {
   min-height: 650px;
   position: relative;
 }

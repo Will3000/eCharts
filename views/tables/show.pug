@@ -1,4 +1,6 @@
 extends ../layout
 
 block content
-  div(id="showTable")= table
+  div(id="chart" value=table_data)
+  div(id="chart-name" value=table_name)
+  div= table_data

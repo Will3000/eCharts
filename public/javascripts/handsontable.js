@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var
     hiddenData = [
-      ['', 'Time', 'Quantity Sold', 'Price', 'Remaining Quantity'],
-      ['iPad', 10, 11, 12, 13],
-      ['Macbook', 10, 11, 12, 13],
-      ['iPhone', 10, 11, 12, 13]
+      ['', 'Jan', 'Feb', 'March', 'April'],
+      ['iPad', 2, 4, 8, 16],
+      ['Macbook', 2, 4, 6, 8],
+      ['iPhone', 16, 8, 4, 2]
     ],
     container = document.getElementById('example2'),
     hot2;
@@ -14,21 +14,30 @@ document.addEventListener("DOMContentLoaded", function() {
     data: hiddenData,
     colHeaders: true,
     minSpareRows: 1
-    // afterChange: function () {
-    //  var tmpData = JSON.parse(JSON.stringify(hiddenData));
-    // }
   });
 
   $('#save').click(function(){
-    var tableData = JSON.stringify(hot2.getData());
-    // var input = JSON.stringify({ "input": tableData });
+    var tableData = hot2.getData();
+    var tableName = $('#tableName').val();
     console.log(tableData);
+
     $.ajax({
       url: "http://localhost:3000/tables/new",
       type: "POST",
       data: {name: $('#tableName').val(), body: tableData},
       success: function () {
         console.log("success");
+        $.ajax({
+          url: "http://localhost:3000/tables",
+          type: "GET",
+          success: function (data){
+            $("#tables").append("<li><a href=http://localhost:3000/tables/" + data.table_id[data.table_id.length - 1] + ">" + tableName + "</a> </li>");
+            console.log(data);
+          },
+          error: function(error){{
+            console.log(error);
+          }}
+        })
       },
       error: function (error) {
         console.log("Error: " + error);

@@ -13,13 +13,17 @@ html
     script(src='http://code.jquery.com/jquery.js')
     script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
     script( src="https://docs.handsontable.com/pro/1.5.0/bower_components/handsontable-pro/dist/handsontable.full.min.js")
+    script(src="https://code.highcharts.com/highcharts.js")
+    script(src="https://code.highcharts.com/modules/exporting.js")
+
     script(src='/javascripts/fb_login.js')
     script(src='/javascripts/handsontable.js')
+    script(src='/javascripts/linechart.js')
     script(src='/javascripts/main.js')
 
 
   body
-    div(class="container")
+    div(class="container main-container")
       div(class="header clearfix")
         nav
           ul(class="nav nav-pills pull-right")
@@ -27,15 +31,16 @@ html
               a(href="/") Home
             li(role="presentation")
               a(href="#") Contact
-            li(role="presentation")
-              a(href="/users/signup") Register
             if login
               li(role="presentation")
                 a(href="/users/signout") Logout
             else
               li(role="presentation")
                 a(href="/users/login") Login
-          h3(class="text-muted") eCharts
+              li(role="presentation")
+                a(href="/users/signup") Register
+          a(href="/", style="text-decoration: none;")
+            h3(class="text-muted") eCharts
       div(class="row")
         div(class="col-lg-12")
           block content

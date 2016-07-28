@@ -11,8 +11,8 @@ router.get('/', function(req, res, next) {
   } else {
     var name = "";
   }
-  
-  res.render('index', { title: 'eCharts', name: name});
+
+  res.render('index', {name: name});
 });
 
 module.exports = router;
