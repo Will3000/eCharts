@@ -1,23 +1,29 @@
 document.addEventListener("DOMContentLoaded", function() {
 
   var
-    hiddenData = [
+    Data = [
       ['', 'Jan', 'Feb', 'March', 'April'],
       ['iPad', 2, 4, 8, 16],
       ['Macbook', 2, 4, 6, 8],
       ['iPhone', 16, 8, 4, 2]
     ],
     container = document.getElementById('example2'),
-    hot2;
+    hot;
 
-  hot2 = new Handsontable(container, {
-    data: hiddenData,
+  hot = new Handsontable(container, {
+    // data: Data,
     colHeaders: true,
-    minSpareRows: 1
+    removeRowPlugin: true,
+    outsideClickDeselects: false,
+    minSpareRows: 1,
+    minSpareCols: 1
   });
+  hot.loadData(Data);
+
+  // removeCol(index, amount)
 
   $('#save').click(function(){
-    var tableData = hot2.getData();
+    var tableData = hot.getData();
     var tableName = $('#tableName').val();
     console.log(tableData);
 
@@ -27,12 +33,14 @@ document.addEventListener("DOMContentLoaded", function() {
       data: {name: $('#tableName').val(), body: tableData},
       success: function () {
         console.log("success");
+
         $.ajax({
           url: "http://localhost:3000/tables",
           type: "GET",
           success: function (data){
-            $("#tables").append("<li><a href=http://localhost:3000/tables/" + data.table_id[data.table_id.length - 1] + ">" + tableName + "</a> </li>");
-            console.log(data);
+            window.location.replace("http://localhost:3000/tables/" + data.table_id[data.table_id.length - 1] );
+            // $("#tables").append("<li><a href=http://localhost:3000/tables/" + data.table_id[data.table_id.length - 1] + ">" + tableName + "</a> </li>");
+            // console.log(data);
           },
           error: function(error){{
             console.log(error);

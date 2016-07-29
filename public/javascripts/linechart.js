@@ -1,8 +1,10 @@
 $(function () {
     var tableData = JSON.parse($('#chart').attr("value"));
     var tableName = $('#chart-name').attr("value");
-    var seriesInput = tableData.slice(1).map(function(arr){
-        return {name: arr[0], data: arr.slice(1).map(function(elem){return elem / 1})}
+
+    // Format the multi-dimensional array into a displayable manner
+    var seriesInput = tableData.slice(1, tableData.length-1).map(function(arr){
+        return {name: arr[0], data: arr.slice(1,arr.length-1).map(function(elem){return elem / 1})}
     })
 
     console.log(seriesInput);
@@ -12,12 +14,12 @@ $(function () {
             text: tableName,
             x: -20 //center
         },
-        subtitle: {
-            text: 'Source: WorldClimate.com',
-            x: -20
-        },
+        // subtitle: {
+        //     text: 'Source: WorldClimate.com',
+        //     x: -20
+        // },
         xAxis: {
-            categories: tableData[0]
+            categories: tableData[0].slice(0, tableData[0].length-2)
         },
         yAxis: {
             title: {

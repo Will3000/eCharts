@@ -9,8 +9,8 @@ body {
   padding-right: 0px;
 }
 
-body > div.main-container {
-  min-height: 650px;
+div.row {
+  min-height: 500px;
   position: relative;
 }
 
@@ -39,7 +39,7 @@ body > div.main-container {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
-  position: absolute;
+  position: relative;
   bottom: 0px;
   left: 0px;
 }
