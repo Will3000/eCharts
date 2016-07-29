@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
 
   var
-    Data = [
-      ['', 'Jan', 'Feb', 'March', 'April'],
-      ['iPad', 2, 4, 8, 16],
-      ['Macbook', 2, 4, 6, 8],
-      ['iPhone', 16, 8, 4, 2]
-    ],
-    container = document.getElementById('example2'),
-    hot;
+  Data = [
+    ['', 'Jan', 'Feb', 'March', 'April'],
+    ['iPad', 2, 4, 8, 16],
+    ['Macbook', 2, 4, 6, 8],
+    ['iPhone', 16, 8, 4, 2]
+  ],
+  container = document.getElementById('example2'),
+  hot;
 
   hot = new Handsontable(container, {
     // data: Data,
@@ -16,11 +16,31 @@ document.addEventListener("DOMContentLoaded", function() {
     removeRowPlugin: true,
     outsideClickDeselects: false,
     minSpareRows: 1,
-    minSpareCols: 1
+    minSpareCols: 1,
+    afterSelectionEnd: function(x1, y1, x2, y2){
+      col1 = y1
+      col2 = y2
+    }
   });
   hot.loadData(Data);
 
-  // removeCol(index, amount)
+
+  // var instance = $('#example2').handsontable('getInstance');
+  // $('#delete').dblclick(function(){
+  //   // if(col1 != null){
+  //   //   if(col2 != null || col2 != col1 ){
+  //       // instance.alter('remove_col', col1, col2);
+  //     // }
+  //     // else{
+  //       instance.alter('remove_col', col1);
+  //   //   }
+  //   //   col1 = null;
+  //   //   col2 = null;
+  //   // }else{
+  //   //   alert('Please select a cell...');
+  //   // }
+  // });
+
 
   $('#save').click(function(){
     var tableData = hot.getData();
