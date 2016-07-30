@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ['Macbook', 2, 4, 6, 8],
     ['iPhone', 16, 8, 4, 2]
   ],
-  container = document.getElementById('example2'),
+  container = document.getElementById('newTable'),
   hot;
 
   hot = new Handsontable(container, {
@@ -24,22 +24,9 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   hot.loadData(Data);
 
-
-  // var instance = $('#example2').handsontable('getInstance');
-  // $('#delete').dblclick(function(){
-  //   // if(col1 != null){
-  //   //   if(col2 != null || col2 != col1 ){
-  //       // instance.alter('remove_col', col1, col2);
-  //     // }
-  //     // else{
-  //       instance.alter('remove_col', col1);
-  //   //   }
-  //   //   col1 = null;
-  //   //   col2 = null;
-  //   // }else{
-  //   //   alert('Please select a cell...');
-  //   // }
-  // });
+  $("#newTable").on("dblclick", function(){
+    hot.alter('remove_col', col1);
+  })
 
 
   $('#save').click(function(){
