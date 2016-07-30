@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
     var name = "";
   }
 
-  res.render('index', {name: name});
+  res.render('home', {name: name});
 });
 
 module.exports = router;

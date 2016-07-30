@@ -50,9 +50,8 @@ initPassport(passport);
 // }
 
 app.use(function (req, res, next) {
-  var greeting = function(){
-    console.log("hello");
-    return "hello";
+  var table_name = function(table_id){
+    return Table.findById(table_id).name;
   }
   res.locals.login = req.isAuthenticated();
   // if(req.user){

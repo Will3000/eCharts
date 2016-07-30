@@ -94,7 +94,20 @@ div.row {
   }
 }
 
+/* centering the table */
 #newTable{
   margin-left: 20%;
   margin-right: 20%;
+}
+
+/* preview your chart in table index page */
+.box{
+    display: none;
+    width: 100%;
+}
+
+a:hover + .box,.box:hover{
+    display: block;
+    position: relative;
+    z-index: 100;
 }

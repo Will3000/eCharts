@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ]
   } else {
     var tableData = JSON.parse($('#chart').attr("value"));
-    tableData[0] = [''].concat(tableData[0].slice(0, tableData.length));
+    tableData[0] = [''].concat(tableData[0].slice(0, tableData.length-1));
     console.log(tableData);
   }
 
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("success");
 
         $.ajax({
-          url: "http://localhost:3000/tables",
+          url: "http://localhost:3000/tables/json",
           type: "GET",
           success: function (data){
             window.location.replace("http://localhost:3000/tables/" + data.table_id[data.table_id.length - 1] );
