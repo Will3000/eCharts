@@ -8,8 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ]
   } else {
     var tableData = JSON.parse($('#chart').attr("value"));
-    tableData[0] = [''].concat(tableData[0].slice(0, tableData.length-1));
-    console.log(tableData);
+    tableData[0] = [''].concat(tableData[0].slice(0, tableData.length - 1));
   }
 
   var
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
   $('#save').click(function(){
     var tableData = hot.getData();
     var tableName = $('#tableName').val();
-    console.log(tableData);
 
     $.ajax({
       url: "http://localhost:3000/tables/new",
@@ -52,9 +50,40 @@ document.addEventListener("DOMContentLoaded", function() {
           url: "http://localhost:3000/tables/json",
           type: "GET",
           success: function (data){
-            window.location.replace("http://localhost:3000/tables/" + data.table_id[data.table_id.length - 1] );
-            // $("#tables").append("<li><a href=http://localhost:3000/tables/" + data.table_id[data.table_id.length - 1] + ">" + tableName + "</a> </li>");
-            // console.log(data);
+            window.location.replace("http://localhost:3000/tables/" + data.table_id );
+          },
+          error: function(error){{
+            console.log(error);
+          }}
+        })
+      },
+      error: function (error) {
+        console.log("Error: " + error);
+      }
+    });
+  });
+
+  $('#update').click(function(){
+    var tableData = hot.getData();
+    var tableName = $('#tableName').val();
+    var url = $(location).attr('href');
+    var id = url.substring(url.lastIndexOf('/') + 1);
+
+    console.log(tableName);
+    console.log(tableData);
+
+    $.ajax({
+      url: "http://localhost:3000/tables/" + id,
+      type: "PATCH",
+      data: {name: tableName, body: tableData},
+      success: function () {
+        console.log("success");
+
+        $.ajax({
+          url: "http://localhost:3000/tables/json",
+          type: "GET",
+          success: function (data){
+            window.location.replace("http://localhost:3000/tables/" + data.table_id );
           },
           error: function(error){{
             console.log(error);
