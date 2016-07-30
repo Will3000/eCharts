@@ -6,7 +6,7 @@ var Table = require('../models/table');
 
 var isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated())
-		return next();
+	return next();
 	res.redirect('/');
 }
 
@@ -18,40 +18,40 @@ router.get("/new", isAuthenticated,function(req, res){
 		tables = req.user.table_id;
 	}
 
-  res.render("tables/new", {errors: {}, tables: tables})
+	res.render("tables/new", {errors: {}, tables: tables})
 });
 
 // Save new table into database
 router.post("/new", function(req, res){
-  if(req.isAuthenticated() === false){
-    res.send({errors: "Please Log In First"});
-  }
-  var table = new Table({ name: req.body.name, table_data: req.body.body, user_id: req.user.id});
-  table.save(function(err, table){
-    if(err){
-      console.log(err);
-      res.send({
-        errors: err.errors,
-        table_data: req.body
-      });
-    } else {
-      User.findById(req.user.id, function(err, user) {
-        console.log('------------------>' + user);
-        if(err){
-          err.status = 404;
-          res.send({errors: err.errors});
-        } else {
-          user.table_id.push(table.id);
-          user.save(function(){
-            res.send({message: "New Table is Created!"});
-          })
-        }
-      });
-    }
-  });
+	if(req.isAuthenticated() === false){
+		res.send({errors: "Please Log In First"});
+	}
+	var table = new Table({ name: req.body.name, table_data: req.body.body, user_id: req.user.id});
+	table.save(function(err, table){
+		if(err){
+			console.log(err);
+			res.send({
+				errors: err.errors,
+				table_data: req.body
+			});
+		} else {
+			User.findById(req.user.id, function(err, user) {
+				console.log('------------------>' + user);
+				if(err){
+					err.status = 404;
+					res.send({errors: err.errors});
+				} else {
+					user.table_id.push(table.id);
+					user.save(function(){
+						res.send({message: "New Table is Created!"});
+					})
+				}
+			});
+		}
+	});
 });
 
-// Table json index page
+// Sending back a individual table id for redirecting to table show page
 router.get("/json", function(req, res){
 	User.findById(req.user.id, function(err, user) {
 		if(err){
@@ -59,7 +59,7 @@ router.get("/json", function(req, res){
 			res.send({errors: err.errors});
 		} else {
 			user.save(function(){
-				res.send({table_id: user.table_id});
+				res.send({table_id: user.table_id[user.table_id.length - 1]});
 			})
 		}
 	});
@@ -92,9 +92,19 @@ router.get("/:id", function(req, res){
 })
 
 // Patch table action
-router.patch("/:id", function(req, res, next){
-	Table.findOne({id: req.params.id},
-		function(){}
-	)
+router.patch("/:id", function(req, res){
+	console.log(req.body);
+	Table.findOne({id: req.params.id},function(err, table){
+		if(err){
+			err.status = 404;
+			res.send('Failed');
+		} else {
+			table.name=req.body.name;
+			table.table_data=req.body.body;
+			Table.update({_id: req.params.id}, table, function(err, product){
+				res.send("Okay");
+			});
+		}
+	})
 })
 module.exports = router;

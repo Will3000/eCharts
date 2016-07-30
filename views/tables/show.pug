@@ -3,6 +3,7 @@ extends ../layout
 block content
   div(id="chart" value=table_data)
   div(id="chart-name" value=table_name)
-  div(id="newTable")
+  input(id="tableName",type="text")
+  div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow")
 
   button#update.btn.btn-default Update
