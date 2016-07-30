@@ -1,12 +1,19 @@
 document.addEventListener("DOMContentLoaded", function() {
+  if($('#chart').length == 0){
+    var tableData = [
+      ['', 'Jan', 'Feb', 'March', 'April'],
+      ['iPad', 2, 4, 8, 16],
+      ['Macbook', 2, 4, 6, 8],
+      ['iPhone', 16, 8, 4, 2]
+    ]
+  } else {
+    var tableData = JSON.parse($('#chart').attr("value"));
+    tableData[0] = [''].concat(tableData[0].slice(0, tableData.length));
+    console.log(tableData);
+  }
 
   var
-  Data = [
-    ['', 'Jan', 'Feb', 'March', 'April'],
-    ['iPad', 2, 4, 8, 16],
-    ['Macbook', 2, 4, 6, 8],
-    ['iPhone', 16, 8, 4, 2]
-  ],
+  Data = tableData,
   container = document.getElementById('newTable'),
   hot;
 
