@@ -4,7 +4,18 @@ block content
   ul(id="tables")
   each val in tables
     li
-      a(href="http://localhost:3000/tables/" + val.id)= val.name
+      h4
+        a.preview(href="http://localhost:3000/tables/" + val.id)= val.name
+      script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+      link(href='http://codegena.com/assets/css/image-preview-for-link.css', rel='stylesheet')
+      script(type='text/javascript').
+        $(function() {
+        $('.preview').miniPreview({ prefetch: 'parenthover' });
+        });
+      script(src='http://codegena.com/assets/js/image-preview-for-link.js')
+
+
+
       //- div.box
       //-   iframe(src="http://localhost:3000/tables/" + val.id, width = "500px", height = "500px")
       form(action=`/tables/${val.id}?_method=delete` method='post')
