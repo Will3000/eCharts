@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var dbConfig = require('./db');
 var mongoose = require('mongoose');
+var methodOverride = require('method-override');
 // Connect to DB
 mongoose.connect(dbConfig.url);
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 // Configuring Passport
 var passport = require('passport');

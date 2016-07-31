@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ]
   } else {
     var tableData = JSON.parse($('#chart').attr("value"));
-    tableData[0] = [''].concat(tableData[0].slice(0, tableData.length - 1));
+    tableData[0] = [''].concat(tableData[0].slice(0, tableData.length));
   }
 
   var
@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
           url: "http://localhost:3000/tables/json",
           type: "GET",
           success: function (data){
+            // console.log("updte successful");
             window.location.replace("http://localhost:3000/tables/" + data.table_id );
           },
           error: function(error){{

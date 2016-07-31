@@ -94,17 +94,31 @@ router.get("/:id", function(req, res){
 // Patch table action
 router.patch("/:id", function(req, res){
 	console.log(req.body);
-	Table.findOne({id: req.params.id},function(err, table){
+	Table.findById(req.params.id,function(err, table){
+		console.log(table);
 		if(err){
 			err.status = 404;
 			res.send('Failed');
 		} else {
 			table.name=req.body.name;
 			table.table_data=req.body.body;
-			Table.update({_id: req.params.id}, table, function(err, product){
+			Table.update({_id: req.params.id}, table, function(err, table){
 				res.send("Okay");
 			});
 		}
 	})
 })
+
+// Delete table action
+router.delete("/:id", function(req, res, next){
+  Table.remove({_id: req.params.id}, function(err, table){
+    if(err){
+      err.status = 404;
+      next(err, req, res);
+    } else {
+      res.redirect('/tables/');
+    }
+  });
+})
+
 module.exports = router;
