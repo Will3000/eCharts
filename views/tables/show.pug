@@ -2,8 +2,10 @@ extends ../layout
 
 block content
   div(id="chart" value=table_data)
+  span Table Name:
   div(id="chart-name" value=table_name)
   input(id="tableName",type="text")
   div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow")
 
   button#update.btn.btn-default Update
+  

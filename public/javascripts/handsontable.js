@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ]
   } else {
     var tableData = JSON.parse($('#chart').attr("value"));
-    tableData[0] = [''].concat(tableData[0].slice(0, tableData.length));
+    tableData[0] = [''].concat(tableData[0]);
   }
 
   var
@@ -37,6 +37,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   $('#save').click(function(){
     var tableData = hot.getData();
+    tableData = tableData.slice(0, tableData.length-1).map(function(arr){
+      return arr.slice(0,arr.length-1);
+    })
     var tableName = $('#tableName').val();
 
     $.ajax({
@@ -65,12 +68,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
   $('#update').click(function(){
     var tableData = hot.getData();
+    tableData = tableData.slice(0, tableData.length-1).map(function(arr){
+      return arr.slice(0,arr.length-1);
+    })
     var tableName = $('#tableName').val();
     var url = $(location).attr('href');
     var id = url.substring(url.lastIndexOf('/') + 1);
 
-    console.log(tableName);
-    console.log(tableData);
 
     $.ajax({
       url: "http://localhost:3000/tables/" + id,
@@ -84,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
           type: "GET",
           success: function (data){
             // console.log("updte successful");
-            window.location.replace("http://localhost:3000/tables/" + data.table_id );
+            window.location.replace("http://localhost:3000/tables/" + id );
           },
           error: function(error){{
             console.log(error);
