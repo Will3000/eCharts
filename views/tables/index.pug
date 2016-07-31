@@ -5,5 +5,7 @@ block content
   each val in tables
     li
       a(href="http://localhost:3000/tables/" + val.id)= val.name
+      form(action=`/tables/${val.id}?_method=delete` method='post')
+        input(type='submit' value='Delete Table')
       div.box
         iframe(src="http://localhost:3000/tables/" + val.id, width = "500px", height = "500px")
