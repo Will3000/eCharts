@@ -1,5 +1,5 @@
 $(function () {
-  var tableData = JSON.parse($('#linechart').attr("value"));
+  var tableData = JSON.parse($('#areachart').attr("value"));
   var tableName = $('#chart-name').attr("value");
   // Format the multi-dimensional array into a displayable manner
   var seriesInput = tableData.slice(1, tableData.length).map(function(arr){

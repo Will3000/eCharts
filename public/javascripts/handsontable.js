@@ -65,13 +65,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
     }
-    
+
     var tableName = $('#tableName').val();
 
     $.ajax({
       url: "http://localhost:3000/tables/new",
       type: "POST",
-      data: {name: $('#tableName').val(), body: cleanedGridData},
+      data: {name: $('#tableName').val(), body: cleanedGridData, type: $('input[name="chartType"]:checked').val()},
       success: function () {
         console.log("success");
 

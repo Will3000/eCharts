@@ -26,7 +26,7 @@ router.post("/new", function(req, res){
 	if(req.isAuthenticated() === false){
 		res.send({errors: "Please Log In First"});
 	}
-	var table = new Table({ name: req.body.name, table_data: req.body.body, user_id: req.user.id});
+	var table = new Table({ name: req.body.name, table_data: req.body.body, user_id: req.user.id, chart_type: req.body.type});
 	table.save(function(err, table){
 		if(err){
 			console.log(err);
@@ -86,7 +86,7 @@ router.get("/:id", function(req, res){
 			err.status = 404;
 			res.redirect("/");
 		} else {
-			res.render("tables/show", {table_name: table.name, table_data: table.table_data})
+			res.render("tables/show", {table_name: table.name, table_data: table.table_data, chart_type: table.chart_type})
 		}
 	})
 })

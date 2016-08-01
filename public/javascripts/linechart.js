@@ -16,7 +16,7 @@ $(function () {
         },
         yAxis: {
             title: {
-                text: 'Unit Sold'
+                text: ''
             },
             plotLines: [{
                 value: 0,

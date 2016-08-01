@@ -119,3 +119,19 @@ div.row {
 .deleteBtn:hover{
   opacity: 1;
 }
+
+/*replace radio buttons with f-icons */
+label > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+
+label > input + i{ /* IMAGE STYLES */
+  margin-right: 10px;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+label > input:checked + i{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:1px solid maroon;
+}

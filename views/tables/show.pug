@@ -1,8 +1,8 @@
 extends ../layout
 
 block content
-  div(id="areachart", value=table_data)
-  div(id="linechart", value=table_data)
+  script(src='/javascripts/' + chart_type + '.js')
+  div(id=chart_type, value=table_data)
   span Table Name:
   div(id="chart-name", value=table_name)
   input(id="tableName",type="text", value=table_name )
