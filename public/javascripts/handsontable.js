@@ -1,5 +1,6 @@
+
 document.addEventListener("DOMContentLoaded", function() {
-  if($('#chart').length == 0){
+  if($('#linechart').length === 0){
     var tableData = [
       ['', 'Jan', 'Feb', 'March', 'April'],
       ['iPad', 2, 4, 8, 16],
@@ -7,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
       ['iPhone', 16, 8, 4, 2]
     ]
   } else {
-    var tableData = JSON.parse($('#chart').attr("value"));
+    var tableData = JSON.parse($('#linechart').attr("value"));
     tableData[0] = [''].concat(tableData[0]);
   }
 
@@ -18,7 +19,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
   hot = new Handsontable(container, {
     // data: Data,
+    manualRowResize: true,
     colHeaders: true,
+    rowHeaders: true,
+    contextMenu: true,
     removeRowPlugin: true,
     outsideClickDeselects: false,
     minSpareRows: 1,
@@ -26,26 +30,48 @@ document.addEventListener("DOMContentLoaded", function() {
     afterSelectionEnd: function(x1, y1, x2, y2){
       col1 = y1
       col2 = y2
+      row1 = x1
+      row2 = x2
     }
   });
   hot.loadData(Data);
 
-  $("#newTable").on("dblclick", function(){
-    hot.alter('remove_col', col1);
+  $("#newTable").on("dblclick", "th", function(event){
+    var par = $(this).parent().parent();
+    if($(this).children().children().hasClass('cornerHeader') === false){
+      if(par.is("tbody")){
+        hot.alter('remove_row', row1);
+      } else if (par.is("thead")) {
+        hot.alter('remove_col', col1);
+      }
+    }
   })
 
 
   $('#save').click(function(){
     var tableData = hot.getData();
-    tableData = tableData.slice(0, tableData.length-1).map(function(arr){
-      return arr.slice(0,arr.length-1);
-    })
+    var cleanedGridData = {};
+
+    $.each( tableData, function( rowKey, object) {
+      if (!hot.isEmptyRow(rowKey)) cleanedGridData[rowKey] = object.slice(0, object.length-1);
+    });
+
+
+    var length = cleanedGridData[0].length;
+    for(var i=0; i<length; i++){
+      if(hot.isEmptyCol(i)){
+        for(var j=0; j<Object.keys(cleanedGridData).length; j++){
+          cleanedGridData[j].splice(i, length-i);
+        }
+      }
+    }
+    
     var tableName = $('#tableName').val();
 
     $.ajax({
       url: "http://localhost:3000/tables/new",
       type: "POST",
-      data: {name: $('#tableName').val(), body: tableData},
+      data: {name: $('#tableName').val(), body: cleanedGridData},
       success: function () {
         console.log("success");
 
@@ -68,9 +94,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
   $('#update').click(function(){
     var tableData = hot.getData();
-    tableData = tableData.slice(0, tableData.length-1).map(function(arr){
-      return arr.slice(0,arr.length-1);
-    })
+    var cleanedGridData = {};
+
+    $.each( tableData, function( rowKey, object) {
+      if (!hot.isEmptyRow(rowKey)) cleanedGridData[rowKey] = object.slice(0, object.length-1);
+    });
+
+
+    var length = cleanedGridData[0].length;
+    for(var i=0; i<length; i++){
+      if(hot.isEmptyCol(i)){
+        for(var j=0; j<Object.keys(cleanedGridData).length; j++){
+          cleanedGridData[j].splice(i, length-i);
+        }
+      }
+    }
+
+
     var tableName = $('#tableName').val();
     var url = $(location).attr('href');
     var id = url.substring(url.lastIndexOf('/') + 1);
@@ -79,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
     $.ajax({
       url: "http://localhost:3000/tables/" + id,
       type: "PATCH",
-      data: {name: tableName, body: tableData},
+      data: {name: tableName, body: cleanedGridData},
       success: function () {
         console.log("success");
 

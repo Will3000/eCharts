@@ -96,18 +96,26 @@ div.row {
 
 /* centering the table */
 #newTable{
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
-/* preview your chart in table index page */
-.box{
-    display: none;
-    width: 100%;
+.titles{
+  display: inline-block;
 }
 
-a:hover + .box,.box:hover{
-    display: block;
-    position: relative;
-    z-index: 100;
+#delete{
+  display: inline-block;
+  margin-left: 2em;
+}
+/*remove default style of button*/
+.deleteBtn{
+  background:none;
+  border:none;
+  font-size:1em;
+  opacity: 0.5;
+}
+
+.deleteBtn:hover{
+  opacity: 1;
 }
