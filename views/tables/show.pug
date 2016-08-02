@@ -1,11 +1,61 @@
 extends ../layout
 
 block content
-  script(src='/javascripts/' + chart_type + '.js')
-  div(id=chart_type, value=table_data)
+  script(src='/javascripts/linechart.js')
+  script(src='/javascripts/areachart.js')
+  script(src='/javascripts/columnchart.js')
+  script(src='/javascripts/barchart.js')
+  script.
+    $(document).ready(function(){
+      $(".fa-line-chart").click(function(){
+        $('#linechart').show();
+        $('#areachart').hide();
+        $('#columnchart').hide();
+        $('#barchart').hide();
+      })
+      $(".fa-area-chart").click(function(){
+        $('#linechart').hide();
+        $('#areachart').show();
+        $('#columnchart').hide();
+        $('#barchart').hide();
+      })
+      $(".column").click(function(){
+        $('#linechart').hide();
+        $('#areachart').hide();
+        $('#columnchart').show();
+        $('#barchart').hide();
+      })
+      $(".bar").click(function(){
+        $('#linechart').hide();
+        $('#areachart').hide();
+        $('#columnchart').hide();
+        $('#barchart').show();
+      })
+    })
+
+
+  div(id='chart', value=table_data)
+  div(id='linechart')
+  div(id='areachart', style="display:none")
+  div(id='columnchart', style="display:none")
+  div(id='barchart', style="display:none")
+  form
+    label
+      input(type="radio", name="chartType", value="linechart", checked=true)
+      i.fa.fa-line-chart
+    label
+      input(type="radio", name="chartType", value="areachart")
+      i.fa.fa-area-chart
+    label
+      input(type="radio", name="chartType", value="columnchart")
+      i.fa.fa-bar-chart.column
+    label
+      input(type="radio", name="chartType", value="barchart")
+      i.fa.fa-bar-chart.bar(style="transform: rotate(90deg) scaleX(-1);")
   span Table Name:
   div(id="chart-name", value=table_name)
   input(id="tableName",type="text", value=table_name )
+
   div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow")
 
   button#update.btn.btn-default Update

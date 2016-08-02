@@ -6,7 +6,10 @@ $(function () {
     return {name: arr[0], data: arr.slice(1,arr.length).map(function(elem){return elem / 1})}
   })
 
-  $('#linechart').highcharts({
+  $('#barchart').highcharts({
+    chart: {
+      type: 'bar'
+    },
     title: {
       text: tableName,
       x: -20 //center

@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function() {
-  if($('#linechart').length === 0){
+  if($('#chart').length === 0){
     var tableData = [
       ['', 'Jan', 'Feb', 'March', 'April'],
       ['iPad', 2, 4, 8, 16],
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
       ['iPhone', 16, 8, 4, 2]
     ]
   } else {
-    var tableData = JSON.parse($('#linechart').attr("value"));
+    var tableData = JSON.parse($('#chart').attr("value"));
     tableData[0] = [''].concat(tableData[0]);
   }
 
@@ -67,11 +67,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     var tableName = $('#tableName').val();
-
+    // type: $('input[name="chartType"]:checked').val()
     $.ajax({
       url: "http://localhost:3000/tables/new",
       type: "POST",
-      data: {name: $('#tableName').val(), body: cleanedGridData, type: $('input[name="chartType"]:checked').val()},
+      data: {name: $('#tableName').val(), body: cleanedGridData},
       success: function () {
         console.log("success");
 
