@@ -6,6 +6,14 @@ $(function () {
     return {name: arr[0], data: arr.slice(1,arr.length).map(function(elem){return elem / 1})}
   })
 
+  var legend_status = function(categories_arr){
+    if(categories_arr.length > 5){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   $('#columnchart').highcharts({
     chart: {
       type: 'column'
@@ -34,10 +42,7 @@ $(function () {
       enabled: false
     },
     legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle',
-      borderWidth: 0
+      enabled: legend_status(tableData[0])
     },
     series: seriesInput
   });
