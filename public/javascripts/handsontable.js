@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  // hot.loadData(Data);
 
   $("#newTable").on("dblclick", "th", function(event){
     var par = $(this).parent().parent();
@@ -72,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
 
-    var tableName = $('#tableName').val();
+    var tableName = $('#tableName').html();
     // type: $('input[name="chartType"]:checked').val()
     $.ajax({
       url: "http://localhost:3000/tables/new",
@@ -117,7 +116,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    var tableName = $('#tableName').val();
+    // var tableName = $('#tableName').val();
+    var tableName = $('#tableName').html();
     var url = $(location).attr('href');
     var id = url.substring(url.lastIndexOf('/') + 1);
 

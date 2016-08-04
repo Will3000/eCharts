@@ -8,11 +8,10 @@ block content
   script.
     $(document).ready(function(){
 
-      $('#linechart').show();
-      $('#areachart').hide();
-      $('#columnchart').hide();
-      $('#barchart').hide();
-
+      $('i.fa.fa-pencil').click(function(){
+        $('#tableName').attr("contenteditable","true");
+        $('#tableName').trigger("focus");
+      })
       $(".fa-line-chart").click(function(){
         $('#linechart').show();
         $('#areachart').hide();
@@ -22,6 +21,7 @@ block content
       $(".fa-area-chart").click(function(){
         $('#linechart').hide();
         $('#areachart').show();
+        $('#areachart').highcharts().reflow();
         $('#columnchart').hide();
         $('#barchart').hide();
       })
@@ -29,6 +29,7 @@ block content
         $('#linechart').hide();
         $('#areachart').hide();
         $('#columnchart').show();
+        $('#columnchart').highcharts().reflow();
         $('#barchart').hide();
       })
       $(".bar").click(function(){
@@ -36,32 +37,36 @@ block content
         $('#areachart').hide();
         $('#columnchart').hide();
         $('#barchart').show();
+        $('#barchart').highcharts().reflow();;
       })
     })
+  div(id='chart', value=table.table_data)
+  ul.nav.nav-tabs
+    li.active
+      a.fa.fa-line-chart(data-toggle="tab", href='#linechart')
+    li
+      a.fa.fa-area-chart(data-toggle="tab", href='#areachart')
+    li
+      a.fa.fa-bar-chart.column(data-toggle="tab", href='#columnchart')
+    li
+      a.bar(data-toggle="tab", href='#barchart')
+        i.fa.fa-bar-chart(style="transform: rotate(90deg) scaleX(-1) scale(0.8,1.3)")
+  div.tab-content
+    div(id='linechart', class="tab-pane fade in active")
+    div(id='areachart', class="tab-pane fade")
+    div(id='columnchart', class="tab-pane fade")
+    div(id='barchart', class="tab-pane fade")
 
-  div(id='chart_group')
-    div(id='chart', value=table_data)
-    div(id='linechart')
-    div(id='areachart')
-    div(id='columnchart')
-    div(id='barchart')
-  form
-    label
-      input(type="radio", name="chartType", value="linechart", checked=true)
-      i.fa.fa-line-chart
-    label
-      input(type="radio", name="chartType", value="areachart")
-      i.fa.fa-area-chart
-    label
-      input(type="radio", name="chartType", value="columnchart")
-      i.fa.fa-bar-chart.column
-    label
-      input(type="radio", name="chartType", value="barchart")
-      i.fa.fa-bar-chart.bar(style="transform: rotate(90deg) scaleX(-1);")
-  span Table Name:
-  div(id="chart-name", value=table_name)
-  input(id="tableName",type="text", value=table_name )
+  div(id="chart-name", value=table.name)
 
-  div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow", style="overflow: hidden; width:715px; height:800px")
+  div(id="table_title")
+    h2(id="tableName",style="display:inline-block")= table.name
+    i.fa.fa-pencil
+
+
+  div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow", style="overflow: hidden; width:715px; height:400px")
 
   button#update.btn.btn-default Update
+  form#delete(action=`/tables/${table.id}?_method=delete` method='post')
+    button.deleteBtn(type="submit")
+      i(class="fa fa-trash", aria-hidden="true")

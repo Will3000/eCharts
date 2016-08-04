@@ -85,7 +85,7 @@ router.get("/:id", function(req, res){
 			err.status = 404;
 			res.redirect("/");
 		} else {
-			res.render("tables/show", {table_name: table.name, table_data: table.table_data})
+			res.render("tables/show", {table: table})
 		}
 	})
 })
