@@ -7,7 +7,7 @@ block content
   script(src='/javascripts/barchart.js')
   script.
     $(document).ready(function(){
-      
+
       $('#linechart').show();
       $('#areachart').hide();
       $('#columnchart').hide();
@@ -62,6 +62,6 @@ block content
   div(id="chart-name", value=table_name)
   input(id="tableName",type="text", value=table_name )
 
-  div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow")
+  div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow", style="overflow: hidden; width:715px; height:800px")
 
   button#update.btn.btn-default Update

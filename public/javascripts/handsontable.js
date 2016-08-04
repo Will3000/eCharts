@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     minSpareRows: 1,
     minSpareCols: 1,
     // afterRender: function(){
-    //   $("#newTable").attr("style", "overflow-x: scroll");
+    //   $("#newTable").attr("style", "overflow: hidden");
     // },
     afterSelectionEnd: function(x1, y1, x2, y2){
       col1 = y1

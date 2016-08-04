@@ -136,6 +136,9 @@ label > input:checked + i{ /* (RADIO CHECKED) IMAGE STYLES */
   border:1px solid maroon;
 }
 
+/*#newTable{
+  overflow: hidden;
+}*/
 /*#newTable > div.ht_master.handsontable{
   overflow: hidden;
 }*/
