@@ -135,3 +135,7 @@ label > input + i{ /* IMAGE STYLES */
 label > input:checked + i{ /* (RADIO CHECKED) IMAGE STYLES */
   border:1px solid maroon;
 }
+
+/*#newTable > div.ht_master.handsontable{
+  overflow: hidden;
+}*/

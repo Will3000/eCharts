@@ -9,7 +9,9 @@ document.addEventListener("DOMContentLoaded", function() {
     ]
   } else {
     var tableData = JSON.parse($('#chart').attr("value"));
-    tableData[0] = [''].concat(tableData[0]);
+    // if(!tableData[0][0] != ""){
+      tableData[0] = [''].concat(tableData[0]);
+    // }
   }
 
   var
@@ -17,16 +19,19 @@ document.addEventListener("DOMContentLoaded", function() {
   container = document.getElementById('newTable'),
   hot;
 
+
   hot = new Handsontable(container, {
-    // data: Data,
+    data: Data,
     manualRowResize: true,
     colHeaders: true,
     rowHeaders: true,
     contextMenu: true,
-    removeRowPlugin: true,
     outsideClickDeselects: false,
     minSpareRows: 1,
     minSpareCols: 1,
+    // afterRender: function(){
+    //   $("#newTable").attr("style", "overflow-x: scroll");
+    // },
     afterSelectionEnd: function(x1, y1, x2, y2){
       col1 = y1
       col2 = y2
@@ -34,7 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
       row2 = x2
     }
   });
-  hot.loadData(Data);
+
+  // hot.loadData(Data);
 
   $("#newTable").on("dblclick", "th", function(event){
     var par = $(this).parent().parent();

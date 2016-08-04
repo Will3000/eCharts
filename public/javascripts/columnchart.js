@@ -42,7 +42,7 @@ $(function () {
       enabled: false
     },
     legend: {
-      enabled: legend_status(tableData[0])
+      enabled: legend_status(seriesInput)
     },
     series: seriesInput
   });

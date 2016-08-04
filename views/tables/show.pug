@@ -7,6 +7,12 @@ block content
   script(src='/javascripts/barchart.js')
   script.
     $(document).ready(function(){
+      
+      $('#linechart').show();
+      $('#areachart').hide();
+      $('#columnchart').hide();
+      $('#barchart').hide();
+
       $(".fa-line-chart").click(function(){
         $('#linechart').show();
         $('#areachart').hide();
@@ -33,12 +39,12 @@ block content
       })
     })
 
-
-  div(id='chart', value=table_data)
-  div(id='linechart')
-  div(id='areachart', style="display:none")
-  div(id='columnchart', style="display:none")
-  div(id='barchart', style="display:none")
+  div(id='chart_group')
+    div(id='chart', value=table_data)
+    div(id='linechart')
+    div(id='areachart')
+    div(id='columnchart')
+    div(id='barchart')
   form
     label
       input(type="radio", name="chartType", value="linechart", checked=true)

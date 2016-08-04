@@ -5,6 +5,7 @@ $(function () {
   var seriesInput = tableData.slice(1, tableData.length).map(function(arr){
     return {name: arr[0], data: arr.slice(1,arr.length).map(function(elem){return (elem.replace(/,/g , ""))/ 1})}
   })
+  var tableCategories = tableData[0]
 
   var legend_status = function(categories_arr){
     if(categories_arr.length > 5){
@@ -13,14 +14,14 @@ $(function () {
       return true;
     }
   }
-  
+
   $('#linechart').highcharts({
     title: {
       text: tableName,
       x: -20 //center
     },
     xAxis: {
-      categories: tableData[0]
+      categories: tableCategories
     },
     yAxis: {
       title: {
@@ -39,7 +40,7 @@ $(function () {
       enabled: false
     },
     legend: {
-      enabled: legend_status(tableData[0])
+      enabled: legend_status(seriesInput)
     },
     series: seriesInput
   });

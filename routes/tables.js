@@ -36,7 +36,6 @@ router.post("/new", function(req, res){
 			});
 		} else {
 			User.findById(req.user.id, function(err, user) {
-				console.log('------------------>' + user);
 				if(err){
 					err.status = 404;
 					res.send({errors: err.errors});
