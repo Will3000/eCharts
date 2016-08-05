@@ -3,7 +3,6 @@ extends layout
 block content
   if login
     p Hi, #{name}
-  body
   #myCarousel.carousel.slide(data-ride='carousel')
     ol.carousel-indicators
       li.active(data-target='#myCarousel', data-slide-to='0')
@@ -25,3 +24,9 @@ block content
     a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
       span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
       span.sr-only Next
+
+  a(class="btn btn-default btn-new",href="/tables/new") Create A Chart
+  div#stock-container
+  script(src="/socket.io/socket.io.js")
+  script.
+    var socket = io();

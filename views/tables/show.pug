@@ -64,9 +64,10 @@ block content
     i.fa.fa-pencil
 
 
-  div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow", style="overflow: hidden; width:715px; height:400px")
+  div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow", style="overflow: hidden; width:715px; height:auto;")
 
-  button#update.btn.btn-default Update
+  button#update.btn.btn-default= "Update  "
+    i.fa.fa-floppy-o
   form#delete(action=`/tables/${table.id}?_method=delete` method='post')
-    button.deleteBtn(type="submit")
+    button.btn.btn-default(type="submit")= "Delete "
       i(class="fa fa-trash", aria-hidden="true")

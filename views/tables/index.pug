@@ -1,9 +1,9 @@
 extends ../layout
 
 block content
-  ul(id="tables")
+  ul(id="tables", class="list-group")
   each val in tables
-    li
+    li.list-group-item
       h4.titles
         a.preview(href="http://localhost:3000/tables/" + val.id)= val.name
       script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
@@ -13,6 +13,6 @@ block content
         $('.preview').miniPreview({ prefetch: 'parenthover' });
         });
       script(src='http://codegena.com/assets/js/image-preview-for-link.js')
-      form#delete(action=`/tables/${val.id}?_method=delete` method='post')
+      form#delete(action=`/tables/${val.id}?_method=delete` method='post' style="float:right")
         button.deleteBtn(type="submit")
           i(class="fa fa-trash", aria-hidden="true")
