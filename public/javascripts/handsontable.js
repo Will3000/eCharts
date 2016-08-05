@@ -86,9 +86,9 @@ document.addEventListener("DOMContentLoaded", function() {
           success: function (data){
             window.location.replace("http://localhost:3000/tables/" + data.table_id );
           },
-          error: function(error){{
+          error: function(error){
             console.log(error);
-          }}
+          }
         })
       },
       error: function (error) {

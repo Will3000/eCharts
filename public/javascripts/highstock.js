@@ -1,4 +1,18 @@
+var yData = "";
 $(function () {
+  var fetchData = function(){
+    $.ajax({
+      url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22YHOO%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=",
+      type: "GET",
+      success: function(data){
+        yData = (data.query.results.quote.Ask);
+      },
+      error: function(error){
+        console.log(error);
+      }
+    });
+  };
+  setInterval(function(){fetchData()}, 1000);
 
   Highcharts.setOptions({
     global : {
@@ -15,8 +29,11 @@ $(function () {
           // set up the updating of the chart each second
           var series = this.series[0];
           setInterval(function () {
+            fetchData();
+            console.log(yData);
             var x = (new Date()).getTime(), // current time
-            y = Math.round(Math.random() * 100);
+            // y = Math.round(Math.random() * 100);
+            y = parseFloat(yData);
             series.addPoint([x, y], true, true);
           }, 1000);
         }
@@ -41,7 +58,7 @@ $(function () {
     },
 
     title : {
-      text : 'Live random data'
+      text : 'Yahoo'
     },
 
     exporting: {
@@ -49,7 +66,7 @@ $(function () {
     },
 
     series : [{
-      name : 'Random data',
+      name : 'Ask: ',
       data : (function () {
         // generate an array of random data
         var data = [], time = (new Date()).getTime(), i;
@@ -57,7 +74,8 @@ $(function () {
         for (i = -999; i <= 0; i += 1) {
           data.push([
             time + i * 1000,
-            Math.round(Math.random() * 100)
+            // Math.round(Math.random() * 100)
+            38
           ]);
         }
         return data;
