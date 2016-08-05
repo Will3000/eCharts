@@ -1,6 +1,9 @@
 extends layout
 
 block content
+
+  script(src='/javascripts/highstock.js')
   if login
     p Hi, #{name}
     a(class="btn btn-default btn-new",href="/tables/new") Create A Chart
+  div#stock-container
