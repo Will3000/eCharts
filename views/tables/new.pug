@@ -1,8 +1,8 @@
 extends ../layout
 
 block content
-  span Table Name:
-  input(id="tableName",type="text")
+  span= "Table Name:  "
+  input(id="tableName",type="text", style="margin-left:5px")
   div(id="newTable",class="hot handsontable htColumnHeaders htRemoveRow")
   br
   button#save.btn.btn-default= "Save  "
