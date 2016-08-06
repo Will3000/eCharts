@@ -15,4 +15,8 @@ router.get('/', function(req, res, next) {
   res.render('home', {name: name});
 });
 
+router.get('/stock', function(req, res, next){
+  res.render('stock_show');
+})
+
 module.exports = router;

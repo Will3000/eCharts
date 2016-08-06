@@ -2,8 +2,8 @@ extends layout
 
 block content
   if login
-    p Hi, #{name}
-  #myCarousel.carousel.slide(data-ride='carousel')
+    p(style="text-align:center;") Hi, #{name}
+  #myCarousel.carousel.slide(data-ride='carousel', style="width:80%; height:400px; margin:auto;")
     ol.carousel-indicators
       li.active(data-target='#myCarousel', data-slide-to='0')
       li(data-target='#myCarousel', data-slide-to='1')
@@ -25,8 +25,9 @@ block content
       span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
       span.sr-only Next
 
-  a(class="btn btn-default btn-new",href="/tables/new") Create A Chart
-  div#stock-container
+  //- div(style="margin:auto; width:20%")
+  //-   a(class="btn btn-default btn-new",href="/tables/new") Create A Chart
+
   script(src="/socket.io/socket.io.js")
   script.
     var socket = io();
