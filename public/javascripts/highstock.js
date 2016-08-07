@@ -58,7 +58,7 @@ $(function () {
     },
 
     title : {
-      text : 'Yahoo'
+      text : 'YHOO'
     },
 
     exporting: {

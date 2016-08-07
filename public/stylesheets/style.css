@@ -104,7 +104,7 @@ div.row {
   display: inline-block;
 }
 
-#delete{
+#delete, #back, #update{
   display: inline-block;
   margin-left: 2em;
 }

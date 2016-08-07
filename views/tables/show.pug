@@ -66,9 +66,12 @@ block content
 
   div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow", style="overflow: hidden; width:715px; height:auto;")
 
-  div(style="display:flex; justify-content: center;")
+  div(style="display:flex; justify-content: center; margin-bottom:5%;")
+
     button#update.btn.btn-default= "Update  "
       i.fa.fa-floppy-o
     form#delete(action=`/tables/${table.id}?_method=delete` method='post')
       button.btn.btn-default(type="submit")= "Delete "
         i(class="fa fa-trash", aria-hidden="true")
+    a#back.btn.btn-default(href="/tables")= "Back to List  "
+      i.fa.fa-arrow-left
