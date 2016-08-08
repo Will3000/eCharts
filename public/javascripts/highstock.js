@@ -5,7 +5,7 @@ $(function () {
       url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22YHOO%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=",
       type: "GET",
       success: function(data){
-        yData = (data.query.results.quote.Ask);
+        yData = (data.query.results.quote.Ask)||yData;
       },
       error: function(error){
         console.log(error);
@@ -68,14 +68,12 @@ $(function () {
     series : [{
       name : 'Ask: ',
       data : (function () {
-        // generate an array of random data
         var data = [], time = (new Date()).getTime(), i;
 
         for (i = -999; i <= 0; i += 1) {
           data.push([
             time + i * 1000,
-            // Math.round(Math.random() * 100)
-            38
+            39
           ]);
         }
         return data;

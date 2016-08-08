@@ -3,7 +3,63 @@ extends ../layout
 block content
   span= "Table Name:  "
   input(id="tableName",type="text", style="margin-left:5px")
+  i.fa.fa-question-circle#question(style="float:right; font-size:20px; cursor:pointer")
   div(id="newTable",class="hot handsontable htColumnHeaders htRemoveRow")
   br
   button#save.btn.btn-default= "Save  "
     i.fa.fa-floppy-o
+  script.
+    var tutorial = {
+      id: "handsontable-guide",
+      steps: [
+        {
+          title: "Table Name",
+          content: "Enter your table name here",
+          target: "tableName",
+          placement: "right"
+        },
+        {
+          title: "Table Content",
+          content: "Enter your inputs or copy/paste any excel data here",
+          target: "newTable",
+          placement: "top",
+          xOffset: 200,
+          yOffset: 70
+        },
+        {
+          title: "Remove Column/Row",
+          content: "Remove unwanted columns/rows by double clicking the headers",
+          target: "newTable",
+          placement: "top",
+          xOffset: 100,
+          yOffset: 20
+        },
+        {
+          title: "Auto Creation of Row",
+          content: "At the last row hit enter twice to add a new row",
+          target: "newTable",
+          placement: "bottom",
+          xOffset: 50,
+          yOffset: -10
+        },
+        {
+          title: "Auto Creation of Column",
+          content: "At the last column hit tab key to add a new column",
+          target: "newTable",
+          placement: "bottom",
+          xOffset: 320,
+          yOffset: -40
+        },
+        {
+          title: "Completed!",
+          content: "Hit here to save.",
+          target: "save",
+          placement: "bottom"
+        }
+      ]
+    };
+    $(document).ready(function(){
+      $('#question').click(function(){
+        hopscotch.startTour(tutorial);
+      })
+    })
