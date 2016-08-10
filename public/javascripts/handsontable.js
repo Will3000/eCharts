@@ -133,7 +133,6 @@ document.addEventListener("DOMContentLoaded", function() {
           url: "http://localhost:3000/tables/json",
           type: "GET",
           success: function (data){
-            // console.log("updte successful");
             window.location.replace("http://localhost:3000/tables/" + id );
           },
           error: function(error){{

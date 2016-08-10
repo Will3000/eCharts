@@ -287,26 +287,21 @@ i.fa.fa-pencil:hover{
   color: white;
 }
 
-/* bootstrap carousel-control style */
-/*.carousel-control .glyphicon,
-.carousel-control .icon-prev,
-.carousel-control .icon-next {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 5;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  margin-left: -10px;
-  font-family: serif;
+#signup {
+  border: white 2px solid;
+  width: 250px;
+  height: 130px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top:50px;
+  position: relative;
+  top: 0px;
+  -webkit-transition: top 0.5s; /* Safari */
+  transition: top 0.5s;
 }
 
-.carousel-control .icon-prev:before {
-  content: '\2039';
+#signup:hover {
+  top: -5px;
 }
-
-.carousel-control .icon-next:before {
-  content: '\203a';
-}*/
