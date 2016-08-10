@@ -40,72 +40,73 @@ block content
         $('#barchart').highcharts().reflow();;
       })
     })
-  div(id='chart', value=table.table_data)
-  i.fa.fa-question-circle#question(style="float:right; font-size:20px; cursor:pointer;")
-  ul.nav.nav-tabs
-    li.active
-      a.fa.fa-line-chart(data-toggle="tab", href='#linechart')
-    li
-      a.fa.fa-area-chart(data-toggle="tab", href='#areachart')
-    li
-      a.fa.fa-bar-chart.column(data-toggle="tab", href='#columnchart')
-    li
-      a.bar#last-tab(data-toggle="tab", href='#barchart')
-        i.fa.fa-bar-chart(style="transform: rotate(90deg) scaleX(-1) scale(0.8,1.3)")
-  div.tab-content
-    div(id='linechart', class="tab-pane fade in active")
-    div(id='areachart', class="tab-pane fade")
-    div(id='columnchart', class="tab-pane fade")
-    div(id='barchart', class="tab-pane fade")
+  .container.content-border
+    div(id='chart', value=table.table_data)
+    i.fa.fa-question-circle#question(style="float:right; font-size:20px; cursor:pointer;")
+    ul.nav.nav-tabs
+      li.active
+        a.fa.fa-line-chart(data-toggle="tab", href='#linechart')
+      li
+        a.fa.fa-area-chart(data-toggle="tab", href='#areachart')
+      li
+        a.fa.fa-bar-chart.column(data-toggle="tab", href='#columnchart')
+      li
+        a.bar#last-tab(data-toggle="tab", href='#barchart')
+          i.fa.fa-bar-chart(style="transform: rotate(90deg) scaleX(-1) scale(0.8,1.3)")
+    div.tab-content
+      div(id='linechart', class="tab-pane fade in active")
+      div(id='areachart', class="tab-pane fade")
+      div(id='columnchart', class="tab-pane fade")
+      div(id='barchart', class="tab-pane fade")
 
-  div(id="chart-name", value=table.name)
+    div(id="chart-name", value=table.name)
 
-  div(id="table_title")
-    h2(id="tableName",style="display:inline-block")= table.name
-    i.fa.fa-pencil
+    div(id="table_title")
+      h2(id="tableName",style="display:inline-block")= table.name
+      i.fa.fa-pencil
 
 
-  div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow", style="overflow: hidden; width:715px; height:auto;")
+    div(id="newTable", class="hot handsontable htColumnHeaders htRemoveRow", style="overflow: hidden; width:715px; height:auto;")
 
-  div(style="display:flex; justify-content: center; margin-bottom:5%;")
+    div(style="display:flex; justify-content: center; margin-bottom:5%;")
 
-    button#update.btn.btn-default= "Update  "
-      i.fa.fa-floppy-o
-    form#delete(action=`/tables/${table.id}?_method=delete` method='post')
-      button.btn.btn-default(type="submit")= "Delete "
-        i(class="fa fa-trash", aria-hidden="true")
-    a#back.btn.btn-default(href="/tables")= "Back to List  "
-      i.fa.fa-arrow-left
-  script.
-    var tutorial = {
-      id: "highcharts-guide",
-      steps: [
-        {
-          title: "Chart Types",
-          content: "Choose your chart by clicking at one of these icons",
-          target: "last-tab",
-          placement: "right"
-        },
-        {
-          title: "Download",
-          content: "Click the dropdown here to save your graph in various formats",
-          target: "question",
-          placement: "bottom",
-          xOffset: -40,
-          yOffset: 69
-        },
-        {
-          title: "Hide/Show Data",
-          content: "Click on the legend names to hide/show the data on the graph",
-          target: "table_title",
-          placement: "bottom",
-          xOffset: 350,
-          yOffset: -86
-        }
-      ]
-    };
-    $(document).ready(function(){
-      $('#question').click(function(){
-        hopscotch.startTour(tutorial);
+      button#update.btn.btn-default= "Update  "
+        i.fa.fa-floppy-o
+      form#delete(action=`/tables/${table.id}?_method=delete` method='post')
+        button.btn.btn-default(type="submit")= "Delete "
+          i(class="fa fa-trash", aria-hidden="true")
+      a#back.btn.btn-default(href="/tables")= "Back to List  "
+        i.fa.fa-arrow-left
+    script.
+      var tutorial = {
+        id: "highcharts-guide",
+        steps: [
+          {
+            title: "Chart Types",
+            content: "Choose your chart by clicking at one of these icons",
+            target: "last-tab",
+            placement: "right"
+          },
+          {
+            title: "Download",
+            content: "Click the dropdown here to save your graph in various formats",
+            target: "question",
+            placement: "bottom",
+            xOffset: -40,
+            yOffset: 69
+          },
+          {
+            title: "Hide/Show Data",
+            content: "Click on the legend names to hide/show the data on the graph",
+            target: "table_title",
+            placement: "bottom",
+            xOffset: 350,
+            yOffset: -86
+          }
+        ]
+      };
+      $(document).ready(function(){
+        $('#question').click(function(){
+          hopscotch.startTour(tutorial);
+        })
       })
-    })
