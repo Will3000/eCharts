@@ -25,7 +25,6 @@ $(function () {
     chart : {
       events : {
         load : function () {
-
           // set up the updating of the chart each second
           var series = this.series[0];
           setInterval(function () {
