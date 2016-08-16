@@ -1,4 +1,4 @@
-
+BASE_URL= "https://echartz.herokuapp.com/"
 document.addEventListener("DOMContentLoaded", function() {
   if($('#chart').length === 0){
     var tableData = [
@@ -74,17 +74,17 @@ document.addEventListener("DOMContentLoaded", function() {
     var tableName = $('#tableName').html();
     // type: $('input[name="chartType"]:checked').val()
     $.ajax({
-      url: "http://localhost:3000/tables/new",
+      url: BASE_URL +  "tables/new",
       type: "POST",
       data: {name: $('#tableName').val(), body: cleanedGridData},
       success: function () {
         console.log("success");
 
         $.ajax({
-          url: "http://localhost:3000/tables/json",
+          url: BASE_URL +  "tables/json",
           type: "GET",
           success: function (data){
-            window.location.replace("http://localhost:3000/tables/" + data.table_id );
+            window.location.replace(BASE_URL +  "tables/" + data.table_id );
           },
           error: function(error){
             console.log(error);
@@ -123,17 +123,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     $.ajax({
-      url: "http://localhost:3000/tables/" + id,
+      url: BASE_URL +  "tables/" + id,
       type: "PATCH",
       data: {name: tableName, body: cleanedGridData},
       success: function () {
         console.log("success");
 
         $.ajax({
-          url: "http://localhost:3000/tables/json",
+          url: BASE_URL +  "tables/json",
           type: "GET",
           success: function (data){
-            window.location.replace("http://localhost:3000/tables/" + id );
+            window.location.replace(BASE_URL +  "tables/" + id );
           },
           error: function(error){{
             console.log(error);

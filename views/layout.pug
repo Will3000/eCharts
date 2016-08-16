@@ -3,23 +3,23 @@ html
   head
     title= title
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', rel='stylesheet', type="text/css")
+    link(href='/stylesheets/bootstrap.css', rel='stylesheet', type="text/css")
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
 
-    script(src='http://docs.handsontable.com/0.26.1/scripts/jquery.min.js')
-    script(src='http://docs.handsontable.com/0.26.1/bower_components/handsontable/dist/handsontable.full.js')
+    script(src='/javascripts/handsontable-jquery.js')
+    script(src='/javascripts/handsontable-bower-components.js')
 
-    link(type='text/css', rel='stylesheet', href='http://docs.handsontable.com/0.26.1/bower_components/handsontable/dist/handsontable.full.min.css')
+    link(type='text/css', rel='stylesheet', href='/stylesheets/handsontable.css')
 
-    script(src='http://code.jquery.com/jquery.js')
-    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+    script(src='/javascripts/jquery.js')
+    script(src='/javascripts/bootstrap.js')
 
-    script(src="https://code.highcharts.com/stock/highstock.js")
-    script(src="https://code.highcharts.com/stock/modules/exporting.js")
+    script(src="/javascripts/hightstock-jquery.js")
+    script(src="/javascripts/hightstock-export.js")
 
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/hopscotch/0.2.6/js/hopscotch.min.js")
-    link(type='text/css', rel='stylesheet', href="https://cdnjs.cloudflare.com/ajax/libs/hopscotch/0.2.6/css/hopscotch.css")
+    script(src="/javascripts/hopscotch.js")
+    link(type='text/css', rel='stylesheet', href="/stylesheets/hopscotch.css")
 
     script(src='/javascripts/fb_login.js')
     script(src='/javascripts/handsontable.js')
@@ -46,7 +46,7 @@ html
                 li(role="presentation")
                   a(href="/users/signup") Register
             a(href="/", style="text-decoration: none;")
-              img(src="http://localhost:3000/images/logo.png", style="height:40px; width:100px")
+              img(src="https://echartz.herokuapp.com/images/logo.png", style="height:40px; width:100px")
         include ./login.pug
       div(class="content")
         block content
