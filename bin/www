@@ -2,7 +2,10 @@
 var debug = require('debug')('passport-mongo');
 var app = require('../app');
 // var http = require('http').Server(app);
-
+var http = require("http");
+setInterval(function() {
+  http.get("http://echartz.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
 
 app.set('port', process.env.PORT || 3000);
 
