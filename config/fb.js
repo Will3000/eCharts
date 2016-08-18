@@ -1,6 +1,6 @@
 // facebook app settings - fb.js
 module.exports = {
-  'appID' : '644958238994099',
-  'appSecret' : '7119012118bc1d93b115c2133b6273f0',
-  'callbackUrl' : 'http://echartz.herokuapp.com/users/auth/facebook/callback'
+  'appID' : '524237487767831',
+  'appSecret' : '2639b312f3f316e128eb77db718336e5',
+  'callbackUrl' : 'https://echartz.herokuapp.com/users/auth/facebook/callback'
 }
