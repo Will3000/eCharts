@@ -6,7 +6,7 @@ block content
     each val in tables
       li.list-group-item
         h4.titles
-          a.preview(href="https://echartz.com/tables/" + val.id)= val.name
+          a.preview(href="/tables/" + val.id)= val.name
         link(href='/stylesheets/image-preview-for-link.css', rel='stylesheet')
         script(type='text/javascript').
           $(function() {
