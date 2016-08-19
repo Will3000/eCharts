@@ -1,4 +1,4 @@
-BASE_URL= "https://echartz.herokuapp.com/"
+BASE_URL= "/"
 document.addEventListener("DOMContentLoaded", function() {
   if($('#chart').length === 0){
     var tableData = [
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
       },
       error: function (error) {
-        console.log("Error: " + error);
+        console.log(error);
       }
     });
   });
