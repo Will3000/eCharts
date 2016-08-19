@@ -2,5 +2,5 @@
 module.exports = {
   'appID' : '524237487767831',
   'appSecret' : '2639b312f3f316e128eb77db718336e5',
-  'callbackUrl' : 'https://echartz.herokuapp.com/users/auth/facebook/callback'
+  'callbackUrl' : 'https://echartz.com/users/auth/facebook/callback'
 }
