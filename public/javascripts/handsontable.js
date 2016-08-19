@@ -1,4 +1,4 @@
-BASE_URL= "https://echartz.herokuapp.com/"
+BASE_URL= "https://echartz.com/"
 document.addEventListener("DOMContentLoaded", function() {
   if($('#chart').length === 0){
     var tableData = [
