@@ -305,3 +305,7 @@ i.fa.fa-pencil:hover{
 #signup:hover {
   top: -5px;
 }
+
+#sample-account p {
+  font-weight:bold;
+}
