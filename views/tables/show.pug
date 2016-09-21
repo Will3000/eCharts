@@ -77,6 +77,8 @@ block content
             i(class="fa fa-trash", aria-hidden="true")
         a#back.btn.btn-default(href="/tables")= "Back to List  "
           i.fa.fa-arrow-left
+    else
+      div#message(style="font-size:20px;") login with sample account or sign up for more features
     script.
       var tutorial = {
         id: "highcharts-guide",
